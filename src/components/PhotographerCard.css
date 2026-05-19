@@ -1,0 +1,156 @@
+/* ── Photographer Card ───────────────────────────────────────────────── */
+.photographer-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  padding: var(--space-5) var(--space-5) var(--space-4);
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Glare */
+.photographer-card .card-glare {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    var(--glare-angle, 135deg),
+    rgba(255, 255, 255, var(--glare-opacity, 0)) 0%,
+    transparent 60%
+  );
+}
+/* Subtle top accent glow on hover */
+.photographer-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 1px;
+  background: var(--gradient-accent);
+  opacity: 0;
+  transition: var(--transition);
+}
+.photographer-card:hover {
+  border-color: var(--accent-border);
+  box-shadow: var(--shadow-lg), 0 0 48px rgba(139, 92, 246, 0.18);
+}
+.photographer-card:hover::before {
+  opacity: 1;
+}
+.photographer-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Header row: avatar + badges */
+.photographer-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+}
+.photographer-card-avatar-wrap {
+  flex-shrink: 0;
+}
+.photographer-card-avatar {
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--border-medium);
+  box-shadow: var(--shadow-md);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.photographer-card:hover .photographer-card-avatar {
+  border-color: var(--accent-border);
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
+}
+
+.photographer-card-badges {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-2);
+}
+
+/* Experience badge */
+.experience-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--accent-hover);
+  background: var(--accent-subtle);
+  border: 1px solid var(--accent-border);
+  padding: 4px 11px;
+  border-radius: var(--radius-full);
+}
+
+/* Body */
+.photographer-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.photographer-card-name {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+.photographer-card-city {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+.photographer-card-portfolio-count {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: var(--space-1);
+}
+
+/* Footer */
+.photographer-card-footer {
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.photographer-card-cta {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: var(--transition);
+}
+.photographer-card:hover .photographer-card-cta {
+  color: var(--accent-hover);
+  gap: 7px;
+}
+
+@media (max-width: 480px) {
+  .photographer-card {
+    padding: var(--space-4);
+  }
+  .photographer-card-footer {
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+}

@@ -1,0 +1,61 @@
+.pf-focus {
+  position: relative;
+  display: inline-block;
+}
+
+.pf-focus__corner {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  opacity: 0;
+  transition: opacity .2s, transform .3s cubic-bezier(.2, .8, .2, 1);
+  pointer-events: none;
+  filter: drop-shadow(0 0 4px var(--accent, #8B5CF6));
+}
+
+.pf-focus__corner--tl {
+  top: -5px; left: -5px;
+  border-top: 2px solid var(--accent, #8B5CF6);
+  border-left: 2px solid var(--accent, #8B5CF6);
+  transform: translate(-4px, -4px);
+}
+.pf-focus__corner--tr {
+  top: -5px; right: -5px;
+  border-top: 2px solid var(--accent, #8B5CF6);
+  border-right: 2px solid var(--accent, #8B5CF6);
+  transform: translate(4px, -4px);
+}
+.pf-focus__corner--bl {
+  bottom: -5px; left: -5px;
+  border-bottom: 2px solid var(--accent, #8B5CF6);
+  border-left: 2px solid var(--accent, #8B5CF6);
+  transform: translate(-4px, 4px);
+}
+.pf-focus__corner--br {
+  bottom: -5px; right: -5px;
+  border-bottom: 2px solid var(--accent, #8B5CF6);
+  border-right: 2px solid var(--accent, #8B5CF6);
+  transform: translate(4px, 4px);
+}
+
+.pf-focus__label {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: .15em;
+  color: var(--accent, #8B5CF6);
+  opacity: 0;
+  transition: opacity .2s;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.pf-focus.is-locked .pf-focus__corner {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+.pf-focus.is-locked .pf-focus__label {
+  opacity: .8;
+}

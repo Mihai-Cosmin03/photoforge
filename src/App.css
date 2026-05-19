@@ -1,0 +1,22 @@
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-accent);
+  z-index: 9999;
+  transform-origin: 0%;
+  pointer-events: none;
+}
+
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background: var(--bg-surface);
+}
+
+.app-main {
+  flex: 1;
+}

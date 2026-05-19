@@ -1,0 +1,38 @@
+/* Hide native cursor globally when custom cursor mounts */
+html:has(.custom-cursor) {
+  cursor: none !important;
+}
+html:has(.custom-cursor) * {
+  cursor: none !important;
+}
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 10000;
+  /* Offset so the center of the SVG tracks the pointer */
+  transform: translate(-50%, -50%);
+  color: var(--accent);
+  will-change: transform;
+  mix-blend-mode: difference;
+  filter: drop-shadow(0 0 4px var(--accent-glow));
+}
+
+[data-theme="paper"] .custom-cursor {
+  color: #a8894a;
+}
+
+[data-theme="light"] .custom-cursor {
+  mix-blend-mode: multiply;
+}
+
+/* Disable custom cursor on touch devices */
+@media (hover: none) {
+  .custom-cursor { display: none; }
+  html:has(.custom-cursor),
+  html:has(.custom-cursor) * {
+    cursor: auto !important;
+  }
+}

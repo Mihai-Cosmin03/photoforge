@@ -1,0 +1,43 @@
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-medium);
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--transition);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent-border);
+  color: var(--accent);
+  background: var(--accent-subtle);
+}
+
+.theme-toggle__icon {
+  display: inline-block;
+  font-size: 1rem;
+  line-height: 1;
+  will-change: transform, opacity;
+}
+
+.theme-toggle__label {
+  font-size: 0.65rem;
+}
+
+/* Paper accent color */
+.theme-toggle--paper:hover {
+  border-color: rgba(168, 137, 74, 0.28);
+  color: #a8894a;
+  background: rgba(168, 137, 74, 0.07);
+}

@@ -1,0 +1,61 @@
+import avatar from '../assets/question.png.jpg'
+
+const photographers = [
+  {
+    id: 1,
+    slug: 'alexandra-popescu',
+    name: 'Alexandra Popescu',
+    avatar,
+    city: 'București',
+    specialties: ['portraits', 'lifestyle'],
+    bio: 'Portrait photographer with 5 years of studio and natural light experience. Alexandra specializes in personal branding shoots and editorial work that highlights the authentic character of every subject.',
+    experience: 5,
+    featured: true,
+  },
+  {
+    id: 2,
+    slug: 'mihai-varga',
+    name: 'Mihai Varga',
+    avatar,
+    city: 'Cluj-Napoca',
+    specialties: ['wedding', 'events'],
+    bio: 'Wedding photographer capturing candid, emotional moments and real stories. With 7 years of experience across hundreds of ceremonies, Mihai brings warmth and artistry to every frame.',
+    experience: 7,
+    featured: true,
+  },
+  {
+    id: 3,
+    slug: 'daria-ionescu',
+    name: 'Daria Ionescu',
+    avatar,
+    city: 'Timișoara',
+    specialties: ['commercial', 'fashion'],
+    bio: 'Creative photographer focused on branding, campaigns, and editorial visuals. Daria has worked with top fashion labels and commercial brands across Romania and Western Europe.',
+    experience: 4,
+    featured: false,
+  },
+  {
+    id: 4,
+    slug: 'andrei-stan',
+    name: 'Andrei Stan',
+    avatar,
+    city: 'Iași',
+    specialties: ['concerts', 'events'],
+    bio: 'Concert photographer capturing energy, lights and crowd atmosphere. Andrei has covered major festivals and intimate venue shows, mastering the art of motion and light in challenging conditions.',
+    experience: 6,
+    featured: false,
+  },
+  {
+    id: 5,
+    slug: 'elena-dumitru',
+    name: 'Elena Dumitru',
+    avatar,
+    city: 'Brașov',
+    specialties: ['travel', 'lifestyle'],
+    bio: 'Travel and lifestyle photographer focused on authentic visual storytelling. Elena documents destinations and human experiences across three continents with a deeply personal and immersive style.',
+    experience: 5,
+    featured: false,
+  },
+]
+
+export default photographers

@@ -1,0 +1,75 @@
+.pf-shutter {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  animation: pfShutterFade 0s linear 1.8s forwards;
+}
+
+.pf-shutter__iris {
+  position: relative;
+  width: 100vmax;
+  height: 100vmax;
+}
+
+.pf-shutter__blade {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 70vmax;
+  height: 70vmax;
+  transform-origin: 0 0;
+  background: var(--bg-surface, #0b0820);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  animation: pfShutterBlade 1.8s cubic-bezier(.77, 0, .18, 1) forwards;
+}
+
+.pf-shutter__ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 20vmax;
+  height: 20vmax;
+  margin-left: -10vmax;
+  margin-top: -10vmax;
+  border: 2px solid var(--accent-hover, #a78bfa);
+  border-radius: 50%;
+  box-shadow: 0 0 60px var(--accent, #8B5CF6), inset 0 0 40px var(--accent, #8B5CF6);
+  opacity: 0;
+  animation: pfShutterRing 1s ease-out .2s forwards;
+}
+
+.pf-shutter__readout {
+  position: absolute;
+  bottom: 40px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .3em;
+  color: var(--accent-hover, #a78bfa);
+  opacity: 0;
+  animation: pfShutterRead .6s ease-out .1s forwards;
+}
+
+@keyframes pfShutterBlade {
+  0%   { transform: translate(-50%, -50%) rotate(var(--rot)) translate(0, 0); }
+  45%  { transform: translate(-50%, -50%) rotate(var(--rot)) translate(-60vmax, -60vmax); }
+  55%  { transform: translate(-50%, -50%) rotate(var(--rot)) translate(-60vmax, -60vmax); }
+  100% { transform: translate(-50%, -50%) rotate(var(--rot)) translate(0, 0); }
+}
+
+@keyframes pfShutterRing {
+  0%   { opacity: 0; transform: scale(.5); }
+  50%  { opacity: 1; }
+  100% { opacity: 0; transform: scale(4); }
+}
+
+@keyframes pfShutterRead {
+  to { opacity: .7; }
+}
+
+@keyframes pfShutterFade {
+  to { opacity: 0; visibility: hidden; }
+}

@@ -1,0 +1,124 @@
+/* ── Category Details Page ───────────────────────────────────────────── */
+.category-details-page {
+  padding-bottom: var(--space-12);
+}
+
+/* ── Hero ────────────────────────────────────────────────────────────── */
+.category-hero {
+  position: relative;
+  height: 520px;
+  overflow: hidden;
+}
+.category-hero-img {
+  width: 100%;
+  height: 130%;        /* taller than container so parallax has room */
+  object-fit: cover;
+  display: block;
+  will-change: transform;
+}
+
+/* Multi-stop gradient — darker at top (nav contrast) and bottom (text) */
+.category-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(6, 5, 15, 0.45) 0%,
+    rgba(6, 5, 15, 0.1) 35%,
+    rgba(6, 5, 15, 0.15) 55%,
+    rgba(6, 5, 15, 0.9) 100%
+  );
+}
+
+/* Subtle violet tint in top-left corner */
+.category-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 60% 50% at 0% 100%,
+    rgba(139, 92, 246, 0.12) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.category-hero-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: var(--space-9) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  z-index: 1;
+}
+
+.category-hero-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+.category-hero-count {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.category-hero-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  max-width: 750px;
+}
+.category-hero-subtitle {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.7;
+  max-width: 580px;
+}
+
+/* ── Portfolios Section ──────────────────────────────────────────────── */
+.category-portfolios {
+  padding-top: var(--space-9);
+}
+.category-portfolios-header {
+  margin-bottom: var(--space-7);
+}
+
+/* Shared portfolio grid — masonry */
+.portfolio-grid {
+  columns: 3 320px;
+  gap: var(--space-5);
+}
+.portfolio-grid > * {
+  break-inside: avoid;
+  margin-bottom: var(--space-5);
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .category-hero {
+    height: 400px;
+  }
+  .portfolio-grid {
+    columns: 1;
+  }
+  .category-hero-content {
+    padding: var(--space-7) var(--space-4);
+  }
+}
+@media (max-width: 480px) {
+  .category-hero {
+    height: 340px;
+  }
+}

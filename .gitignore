@@ -1,0 +1,163 @@
+# ═══════════════════════════════════════════════════════════════════
+#  PhotoForge — .gitignore
+#  Organizat pe categorii; nu modifica ordinea fără motiv.
+# ═══════════════════════════════════════════════════════════════════
+
+
+# ── 1. Dependențe ────────────────────────────────────────────────────
+node_modules/
+server/node_modules/
+jspm_packages/
+
+
+# ── 2. Build outputs ─────────────────────────────────────────────────
+# Vite (frontend)
+dist/
+.vite/
+
+# NestJS (backend)
+server/dist/
+server/.nest/
+
+# Storybook (dacă adaugi în viitor)
+storybook-static/
+
+
+# ── 3. Variabile de mediu / Secrete ─────────────────────────────────
+# NICIODATĂ în git — conțin parole, JWT secrets, chei API
+.env
+.env.local
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+.env.production
+.env.production.local
+server/.env
+server/.env.*
+# Excepție: template-ul fără valori reale este binevenit în repo
+!.env.example
+!server/.env.example
+
+
+# ── 4. Fișiere încărcate de utilizatori ─────────────────────────────
+# Imaginile din portofolii, avataruri etc. NU merg în git
+# (în producție merg pe Cloudflare R2 — vezi ghidul de deployment)
+server/uploads/
+uploads/
+
+
+# ── 5. TypeScript ────────────────────────────────────────────────────
+# Cache-ul de compilare incrementală (generat automat la build)
+*.tsbuildinfo
+server/tsconfig.build.tsbuildinfo
+
+
+# ── 6. Logs ──────────────────────────────────────────────────────────
+*.log
+logs/
+server/logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+
+# ── 7. Cache / Runtime ───────────────────────────────────────────────
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+.npm/
+.yarn/
+.pnp.*
+
+# PID files
+*.pid
+*.pid.lock
+*.seed
+
+
+# ── 8. Teste / Coverage ──────────────────────────────────────────────
+coverage/
+server/coverage/
+.nyc_output/
+junit.xml
+
+
+# ── 9. Deployment ────────────────────────────────────────────────────
+# Vercel cache local (generat automat la deploy)
+.vercel/
+
+# Railway local config
+.railway/
+
+
+# ── 10. OS — macOS ───────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+
+# ── 11. OS — Windows ─────────────────────────────────────────────────
+Thumbs.db
+ehthumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+
+# ── 12. Editoare ─────────────────────────────────────────────────────
+# VS Code — setările personale nu trebuie sincronizate
+.vscode/
+!.vscode/extensions.json
+
+# JetBrains (WebStorm, IntelliJ etc.)
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+\#*\#
+.#*
+
+
+# ── 13. Fișiere personale ale proiectului ────────────────────────────
+# Note, prompturi, documente de lucru care nu aparțin repo-ului
+claude_code_photoforge_rebuild_prompt.md
+*.prompt.md
+scratch/
+notes/
+
+
+# ── 14. Certificate / Chei criptografice ────────────────────────────
+*.pem
+*.key
+*.cert
+*.crt
+*.p12
+*.pfx
+
+
+# ── 15. Docker — date locale ─────────────────────────────────────────
+# Volumele locale PostgreSQL (dacă rulezi cu docker-compose)
+pgdata/
+postgres-data/
+.docker/
+# docker-compose.yml și Dockerfile SE PĂSTREAZĂ în git
+
+
+# ── 16. Diverse ──────────────────────────────────────────────────────
+*.tgz
+*.tar.gz
+.temp/
+tmp/
+temp/

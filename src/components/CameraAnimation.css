@@ -1,0 +1,39 @@
+.cam-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.cam-bob {
+  filter: drop-shadow(0 24px 48px rgba(100, 70, 220, 0.35))
+          drop-shadow(0 8px 24px rgba(0, 0, 0, 0.6));
+}
+
+.cam-svg {
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  display: block;
+  transition: filter 0.3s;
+}
+
+.cam-wrap:hover .cam-svg {
+  filter: drop-shadow(0 0 24px rgba(139, 92, 246, 0.5));
+}
+
+.cam-hint {
+  margin-top: 12px;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.2);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-family: monospace;
+  transition: color 0.3s;
+}
+
+.cam-wrap:hover .cam-hint {
+  color: rgba(167, 139, 250, 0.5);
+}

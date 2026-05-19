@@ -1,0 +1,196 @@
+/* ── Section spacing ─────────────────────────────────────────────────── */
+.ph-detail-section {
+  margin-top: var(--space-10);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* ── Photographer Details Page ───────────────────────────────────────── */
+.photographer-details-page {
+  padding: var(--space-7) 0 var(--space-12);
+}
+
+/* ── Profile Hero Card ───────────────────────────────────────────────── */
+.photographer-profile-hero {
+  display: flex;
+  gap: var(--space-8);
+  align-items: flex-start;
+  margin: var(--space-6) 0 var(--space-9);
+  padding: var(--space-8);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  position: relative;
+  overflow: hidden;
+}
+/* Ambient glow in top-right corner */
+.photographer-profile-hero::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Avatar */
+.photographer-profile-avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+.photographer-profile-avatar {
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--border-medium);
+  box-shadow: var(--shadow-md), 0 0 0 6px rgba(139, 92, 246, 0.08);
+}
+.photographer-featured-badge {
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+/* Info block */
+.photographer-profile-info {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+}
+.photographer-profile-name-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.photographer-profile-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+.photographer-profile-name {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.1;
+  margin-bottom: var(--space-3);
+  letter-spacing: -0.025em;
+}
+.photographer-profile-meta-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-3);
+}
+.photographer-profile-city {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.photographer-profile-bio {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-top: var(--space-4);
+  max-width: 640px;
+}
+
+/* Stats row */
+.photographer-profile-stats {
+  display: flex;
+  gap: var(--space-6);
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border-subtle);
+}
+.photographer-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.photographer-stat-value {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.photographer-stat-label {
+  font-size: 0.68rem;
+  font-family: var(--font-body);
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ── Portfolios Section ──────────────────────────────────────────────── */
+.photographer-portfolios-section {
+  padding-top: var(--space-4);
+}
+.photographer-portfolios-header {
+  margin-bottom: var(--space-7);
+}
+
+/* Portfolio grid (shared) — masonry */
+.portfolio-grid {
+  columns: 3 320px;
+  gap: var(--space-5);
+}
+.portfolio-grid > * {
+  break-inside: avoid;
+  margin-bottom: var(--space-5);
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .photographer-profile-hero {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--space-6);
+    gap: var(--space-5);
+  }
+  .photographer-profile-meta-row,
+  .photographer-profile-stats {
+    justify-content: center;
+  }
+  .photographer-profile-actions {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .portfolio-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .photographer-profile-hero {
+    padding: var(--space-5) var(--space-4);
+  }
+  .photographer-profile-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .photographer-profile-name {
+    font-size: 1.6rem;
+  }
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+  .ph-detail-section {
+    margin-top: var(--space-7);
+    padding-top: var(--space-6);
+  }
+}

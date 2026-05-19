@@ -1,0 +1,316 @@
+/* ── My Portfolios ────────────────────────────────────────────────────── */
+.my-portfolios {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.my-portfolios-loading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.my-portfolio-skeleton {
+  height: 100px;
+  border-radius: var(--radius-lg);
+}
+
+/* Header row */
+.my-portfolios-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.my-portfolios-count {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Create form */
+.my-portfolio-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  background: var(--bg-raised);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+
+.my-portfolio-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* Portfolio list */
+.my-portfolio-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.my-portfolio-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  transition: border-color 0.2s ease;
+}
+.my-portfolio-card:hover {
+  border-color: var(--accent-border);
+}
+
+.my-portfolio-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.my-portfolio-title {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.my-portfolio-link {
+  color: inherit;
+  text-decoration: none;
+}
+.my-portfolio-link:hover {
+  color: var(--accent);
+}
+
+.my-portfolio-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.my-portfolio-category {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background: var(--bg-raised);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  padding: 2px 10px;
+}
+
+.my-portfolio-img-count {
+  font-size: 0.75rem;
+  color: var(--text-faint);
+}
+
+/* Status badges */
+.status-badge {
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 2px 9px;
+  border-radius: var(--radius-full);
+}
+.status-badge--approved {
+  background: rgba(34, 197, 94, 0.12);
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.25);
+}
+.status-badge--pending {
+  background: rgba(234, 179, 8, 0.12);
+  color: #eab308;
+  border: 1px solid rgba(234, 179, 8, 0.25);
+}
+
+/* Actions */
+.my-portfolio-actions {
+  flex-shrink: 0;
+}
+
+.upload-label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+.upload-label--loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Image strip */
+.my-portfolio-images {
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.my-portfolio-images::-webkit-scrollbar { height: 3px; }
+.my-portfolio-images::-webkit-scrollbar-thumb {
+  background: var(--border-medium);
+  border-radius: 3px;
+}
+
+.my-portfolio-thumb-wrap {
+  flex-shrink: 0;
+  width: 80px;
+  height: 60px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  cursor: grab;
+}
+.my-portfolio-thumb-wrap:active {
+  cursor: grabbing;
+}
+
+.my-portfolio-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.my-portfolio-drag-hint {
+  font-size: 0.72rem;
+  color: var(--text-faint);
+  margin-bottom: var(--space-2);
+}
+
+.my-portfolio-thumb-wrap {
+  position: relative;
+}
+.my-portfolio-thumb-wrap:hover .my-portfolio-thumb-delete {
+  opacity: 1;
+}
+.my-portfolio-thumb-delete {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  font-size: 0.75rem;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  z-index: 2;
+}
+.my-portfolio-thumb-delete:hover {
+  background: #ef4444;
+}
+
+.my-portfolio-thumb-more {
+  flex-shrink: 0;
+  width: 80px;
+  height: 60px;
+  border-radius: var(--radius-md);
+  background: var(--bg-raised);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* ── Drop Zone ─────────────────────────────────────────────────────────── */
+.drop-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 12px 20px;
+  border: 1.5px dashed var(--border);
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+  min-width: 140px;
+  text-align: center;
+  outline: none;
+}
+
+.drop-zone:hover,
+.drop-zone:focus {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(var(--accent-rgb, 99, 102, 241), 0.05);
+}
+
+.drop-zone--active {
+  border-color: var(--accent);
+  background: rgba(var(--accent-rgb, 99, 102, 241), 0.08);
+  color: var(--accent);
+}
+
+.drop-zone--uploading {
+  opacity: 0.6;
+  cursor: default;
+  pointer-events: none;
+}
+
+.drop-zone__icon {
+  flex-shrink: 0;
+  margin-bottom: 2px;
+}
+
+.drop-zone__label {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.drop-zone__hint {
+  font-size: 0.72rem;
+  opacity: 0.7;
+}
+
+.drop-zone__progress-track {
+  width: 100%;
+  height: 4px;
+  background: var(--border-subtle);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.drop-zone__progress-fill {
+  height: 100%;
+  background: var(--gradient-accent);
+  border-radius: 99px;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .my-portfolio-form-grid {
+    grid-template-columns: 1fr;
+  }
+  .my-portfolio-card-header {
+    flex-direction: column;
+  }
+}

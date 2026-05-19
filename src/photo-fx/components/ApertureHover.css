@@ -1,0 +1,57 @@
+.pf-ap {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg, 12px);
+  isolation: isolate;
+  cursor: pointer;
+  height: 100%;
+  transition: transform .25s cubic-bezier(.2, .8, .2, 1),
+              box-shadow .25s;
+}
+
+.pf-ap:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .3);
+}
+
+.pf-ap__preview,
+.pf-ap__full {
+  width: 100%;
+  height: 100%;
+  transition: opacity .5s;
+}
+
+.pf-ap__full {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.pf-ap:hover .pf-ap__preview { opacity: 0; }
+.pf-ap:hover .pf-ap__full    { opacity: 1; }
+
+/* Iris overlay */
+.pf-ap__iris {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.pf-ap__iris span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 120%;
+  height: 120%;
+  transform-origin: 0 0;
+  background: var(--bg-surface, #0b0820);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  transform: translate(-50%, -50%) rotate(var(--ap-rot)) scale(1);
+  transition: transform .5s cubic-bezier(.77, 0, .18, 1);
+  opacity: .95;
+}
+
+.pf-ap:hover .pf-ap__iris span {
+  transform: translate(-50%, -50%) rotate(var(--ap-rot)) scale(0);
+}

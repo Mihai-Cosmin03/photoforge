@@ -1,0 +1,178 @@
+/* ── Load more ───────────────────────────────────────────────────────── */
+.load-more-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-8);
+  min-height: 60px;
+  align-items: center;
+}
+
+.infinite-scroll-spinner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Photographers Page ──────────────────────────────────────────────── */
+.photographers-page {
+  padding-bottom: var(--space-12);
+}
+
+/* Hero section with canvas background */
+.photographers-hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-surface);
+  padding: var(--space-11) 0 var(--space-9);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.photographers-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-hero);
+  pointer-events: none;
+}
+
+.photographers-page .page-container:not(:first-child) {
+  padding-top: var(--space-8);
+}
+
+.photographers-header {
+  margin-bottom: 0;
+  position: relative;
+  z-index: 1;
+}
+.photographers-subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-top: var(--space-4);
+  max-width: 520px;
+  line-height: 1.7;
+}
+
+/* ── Filter Bar ──────────────────────────────────────────────────────── */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-7);
+  padding: var(--space-4) var(--space-5);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  backdrop-filter: var(--blur-sm);
+}
+
+.filter-select {
+  appearance: none;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  padding: 9px 18px;
+  font-size: 0.875rem;
+  font-family: var(--font-body);
+  cursor: pointer;
+  outline: none;
+  transition: var(--transition);
+}
+.filter-select:focus {
+  border-color: var(--accent-border);
+  background: var(--accent-subtle);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+.filter-select option {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+}
+
+.filter-specialties {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.filter-pill {
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.filter-pill:hover {
+  border-color: var(--border-medium);
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.04);
+}
+.filter-pill.active {
+  background: var(--accent-subtle);
+  border-color: var(--accent-border);
+  color: var(--accent-hover);
+  box-shadow: 0 0 0 1px var(--accent-border);
+}
+
+.filter-count {
+  margin-left: auto;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  white-space: nowrap;
+  letter-spacing: 0.03em;
+}
+
+/* ── Grid ────────────────────────────────────────────────────────────── */
+.photographers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: var(--space-5);
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .filter-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .filter-count {
+    margin-left: 0;
+  }
+  .photographers-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+  .filter-specialties {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .photographers-grid {
+    grid-template-columns: 1fr;
+  }
+  .photographers-hero {
+    padding: var(--space-9) 0 var(--space-7);
+  }
+}

@@ -1,0 +1,116 @@
+/* ── Category Card ───────────────────────────────────────────────────── */
+.category-card {
+  display: block;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.category-card:hover {
+  border-color: var(--accent-border);
+  box-shadow: var(--shadow-lg), 0 0 48px rgba(139, 92, 246, 0.18);
+}
+
+/* Glare overlay */
+.card-glare {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    var(--glare-angle, 135deg),
+    rgba(255, 255, 255, var(--glare-opacity, 0)) 0%,
+    transparent 60%
+  );
+  transition: opacity 0.3s ease;
+}
+.category-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Image */
+.category-card-image-wrap {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+.category-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.category-card:hover .category-card-image {
+  transform: scale(1.07);
+}
+
+/* Don't let ApertureHover fight the card's own hover/tilt */
+.category-card-image-wrap .pf-ap:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Gradient overlay for readability */
+.category-card-image-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top,
+    rgba(6, 5, 15, 0.6) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+/* Badge */
+.category-card-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1;
+}
+
+/* Content */
+.category-card-content {
+  padding: var(--space-5);
+}
+.category-card-meta {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-2);
+}
+.category-card-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+.category-card-description {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.category-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: var(--space-3);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--accent);
+  transition: var(--transition);
+}
+.category-card:hover .category-card-cta {
+  gap: 8px;
+  color: var(--accent-hover);
+}

@@ -1,0 +1,281 @@
+/* ── Portfolio Details Page ──────────────────────────────────────────── */
+.portfolio-details-page {
+  padding: var(--space-8) 0 var(--space-12);
+}
+
+/* ── 2-column layout ─────────────────────────────────────────────────── */
+.portfolio-layout {
+  display: grid;
+  grid-template-columns: 1fr 310px;
+  gap: var(--space-9);
+  align-items: start;
+}
+
+/* ── Hero section ────────────────────────────────────────────────────── */
+.portfolio-hero {
+  margin-bottom: var(--space-8);
+  padding-bottom: var(--space-8);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.portfolio-hero-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+.portfolio-hero-badges {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.portfolio-hero-title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-3);
+}
+
+.portfolio-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.portfolio-hero-title {
+  margin-bottom: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  margin-bottom: var(--space-4);
+}
+.portfolio-hero-description {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  max-width: 580px;
+  margin-bottom: var(--space-7);
+}
+
+/* Photographer info block */
+.portfolio-photographer-block {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  flex-wrap: wrap;
+  transition: var(--transition);
+}
+.portfolio-photographer-block:hover {
+  border-color: var(--accent-border);
+}
+.portfolio-photographer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+  min-width: 0;
+}
+.portfolio-photographer-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: var(--transition);
+}
+.portfolio-photographer-name:hover {
+  color: var(--accent);
+}
+.portfolio-photographer-meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ── Gallery ─────────────────────────────────────────────────────────── */
+.gallery-section {
+  margin-top: var(--space-4);
+}
+.gallery-section .section-eyebrow {
+  display: block;
+  margin-bottom: var(--space-5);
+}
+/* Masonry gallery */
+.gallery-grid {
+  columns: 3 220px;
+  gap: 10px;
+}
+.gallery-item {
+  display: block;
+  break-inside: avoid;
+  margin-bottom: 10px;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  background: var(--bg-elevated);
+  outline: none;
+  width: 100%;
+  position: relative;
+}
+.gallery-item .blur-img-wrap {
+  aspect-ratio: unset;
+}
+.gallery-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.gallery-item:hover::after { opacity: 1; }
+.gallery-item:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 2px var(--accent-border);
+}
+.gallery-item:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.gallery-item .blur-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.gallery-item:hover .blur-img { transform: scale(1.06); }
+
+/* Expand icon on hover */
+.gallery-item__expand {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: #fff;
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+.gallery-item:hover .gallery-item__expand {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ── Sidebar ─────────────────────────────────────────────────────────── */
+.portfolio-sidebar {
+  position: sticky;
+  top: 86px;
+}
+.sidebar-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+.sidebar-heading {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--border-subtle);
+  letter-spacing: -0.01em;
+}
+.sidebar-info-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+.sidebar-info-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-3);
+}
+.sidebar-label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  flex-shrink: 0;
+}
+.sidebar-value {
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  text-align: right;
+}
+.sidebar-link {
+  color: var(--accent);
+  transition: var(--transition);
+}
+.sidebar-link:hover {
+  color: var(--accent-hover);
+}
+.sidebar-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #4ade80;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+.sidebar-status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 6px #4ade80;
+}
+.sidebar-specialties {
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .portfolio-layout {
+    grid-template-columns: 1fr;
+  }
+  .portfolio-sidebar {
+    position: static;
+  }
+}
+@media (max-width: 600px) {
+  .gallery-grid {
+    columns: 2;
+  }
+  .portfolio-photographer-block {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .portfolio-photographer-block .btn-ghost {
+    margin-left: 0 !important;
+    width: 100%;
+  }
+}

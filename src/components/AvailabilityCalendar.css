@@ -1,0 +1,124 @@
+/* ── Availability Calendar ───────────────────────────────────────────── */
+.av-cal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: 420px;
+}
+
+.av-cal__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.av-cal__nav-btn {
+  background: var(--bg-raised);
+  border: 1px solid var(--border-medium);
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, border-color 0.15s;
+}
+.av-cal__nav-btn:hover { background: var(--bg-elevated); border-color: var(--border-strong); }
+
+.av-cal__month-label {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.av-cal__legend {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+.av-cal__legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+.av-cal__legend-item::before {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+.av-cal__legend-item--avail::before { background: rgba(34,197,94,0.3); border: 1px solid rgba(34,197,94,0.6); }
+.av-cal__legend-item--busy::before { background: rgba(239,68,68,0.2); border: 1px solid rgba(239,68,68,0.5); }
+.av-cal__legend-hint { font-size: 0.72rem; color: var(--text-faint); margin-left: auto; }
+
+.av-cal__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.av-cal__day-name {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  text-align: center;
+  padding: var(--space-1) 0;
+}
+
+.av-cal__cell {
+  aspect-ratio: 1;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  background: var(--bg-raised);
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: default;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+  position: relative;
+}
+
+.av-cal__cell--empty { background: transparent; border-color: transparent; }
+.av-cal__cell--past { opacity: 0.3; }
+.av-cal__cell--today {
+  border-color: var(--accent-border);
+  color: var(--accent);
+  font-weight: 700;
+}
+.av-cal__cell--avail {
+  background: rgba(34, 197, 94, 0.15);
+  border-color: rgba(34, 197, 94, 0.4);
+  color: #22c55e;
+}
+.av-cal__cell--busy {
+  background: rgba(239, 68, 68, 0.12);
+  border-color: rgba(239, 68, 68, 0.35);
+  color: #ef4444;
+  text-decoration: line-through;
+  opacity: 0.8;
+}
+.av-cal__cell--clickable {
+  cursor: pointer;
+}
+.av-cal__cell--clickable:hover {
+  border-color: var(--accent-border);
+  transform: scale(1.08);
+}
+.av-cal__cell--toggling {
+  opacity: 0.5;
+  pointer-events: none;
+}

@@ -1,0 +1,34 @@
+.pf-dev {
+  position: relative;
+  isolation: isolate;
+}
+
+.pf-dev__inner {
+  animation: pfDevDevelop var(--pf-dur, 1600ms) cubic-bezier(.2, .6, .2, 1) forwards;
+}
+
+.pf-dev__chem {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(139, 92, 246, .15), transparent 60%),
+    radial-gradient(circle at 70% 80%, rgba(236, 72, 153, .1), transparent 50%);
+  mix-blend-mode: overlay;
+  opacity: 0;
+  animation: pfDevChem var(--pf-dur, 1600ms) ease-out forwards;
+}
+
+@keyframes pfDevDevelop {
+  0%   { filter: invert(1) hue-rotate(180deg) contrast(.3) brightness(.4); opacity: 0; }
+  20%  { opacity: .6; filter: invert(.8) sepia(1) hue-rotate(180deg) contrast(.6); }
+  55%  { filter: sepia(.7) contrast(1.1) brightness(.9); opacity: 1; }
+  100% { filter: none; opacity: 1; }
+}
+
+@keyframes pfDevChem {
+  0%   { opacity: 0; }
+  40%  { opacity: .8; }
+  100% { opacity: 0; }
+}
