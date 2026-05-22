@@ -11,20 +11,13 @@ async function bootstrap() {
     crossOriginResourcePolicy: { policy: 'cross-origin' }, // allow /uploads images to be served cross-origin
   }));
 
-  const allowedOrigins = [
-    process.env.FRONTEND_URL,
-    'http://localhost:5173',
-    'http://localhost:4173',
-  ].filter(Boolean);
-
   app.enableCors({
-    origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
-      if (!origin || allowedOrigins.includes(origin) || /\.vercel\.app$/.test(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
+    origin: [
+      process.env.FRONTEND_URL ?? 'http://localhost:5173',
+      'http://localhost:5173',
+      'http://localhost:4173',
+      /\.vercel\.app$/,
+    ],
     credentials: true,
   });
 
