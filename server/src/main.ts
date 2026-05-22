@@ -1,19 +1,18 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
-import helmet from 'helmet';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Security headers
-  app.use(helmet({
-    crossOriginResourcePolicy: { policy: 'cross-origin' }, // allow /uploads images to be served cross-origin
-  }));
-
-  app.enableCors({
-    origin: true,
-    credentials: true,
+  app.use((req: any, res: any, next: any) => {
+    const origin = req.headers.origin;
+    if (origin) res.setHeader('Access-Control-Allow-Origin', origin);
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization,Accept');
+    if (req.method === 'OPTIONS') return res.status(204).end();
+    next();
   });
 
   app.useGlobalPipes(
