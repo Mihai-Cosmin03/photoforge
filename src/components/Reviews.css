@@ -272,3 +272,8 @@
   text-align: center;
   padding: var(--space-8) 0;
 }
+
+/* ── Responsive ───────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .reviews__submit-btn { width: 100%; text-align: center; }
+}

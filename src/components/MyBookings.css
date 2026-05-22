@@ -147,3 +147,13 @@ a.my-booking-name:hover { color: var(--accent); }
 .booking-badge--rejected { background: rgba(239,68,68,.1);  color: #ef4444; border: 1px solid rgba(239,68,68,.3); }
 
 .my-booking-actions { display: flex; gap: var(--space-2); }
+
+/* ── Responsive ───────────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .my-booking-card { flex-direction: column; gap: var(--space-3); padding: var(--space-3); }
+  .my-booking-respond { min-width: unset; width: 100%; align-items: stretch; }
+  .my-booking-status-wrap { align-items: flex-start; }
+  .my-booking-details { flex-direction: column; gap: var(--space-1); }
+  .my-bookings-tabs { width: 100%; }
+  .my-bookings-tab { flex: 1; text-align: center; }
+}

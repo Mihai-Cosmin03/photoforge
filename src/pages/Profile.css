@@ -266,10 +266,14 @@
 
 /* ── Responsive ──────────────────────────────────────────────────────── */
 @media (max-width: 640px) {
+  .profile-page { padding: var(--space-6) 0 var(--space-8); }
   .profile-header {
     flex-direction: column;
     text-align: center;
-    padding: var(--space-6);
+    padding: var(--space-5);
     gap: var(--space-4);
   }
+  .profile-avatar-actions { right: 50%; transform: translateX(50%) translateY(0); bottom: -8px; }
+  .profile-section { padding: var(--space-5); }
+  .settings-row { flex-direction: column; }
 }
