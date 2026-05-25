@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { io } from 'socket.io-client'
-import { API_URL } from '../config.js'
+import { SOCKET_URL } from '../config.js'
 
 export function useSocket(token) {
   const socketRef = useRef(null)
@@ -9,9 +9,9 @@ export function useSocket(token) {
   useEffect(() => {
     if (!token) return
 
-    const socket = io(`${API_URL}/conversations`, {
+    const socket = io(`${SOCKET_URL}/conversations`, {
       auth: { token },
-      transports: ['websocket'],
+      transports: ['websocket', 'polling'],
       reconnectionAttempts: 5,
       reconnectionDelay: 1000,
     })

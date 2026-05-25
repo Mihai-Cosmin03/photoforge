@@ -216,6 +216,12 @@ export default function Conversations() {
 
   const activeConv = conversations.find((c) => c.id === activeId)
 
+  const getPartnerName = (conv) => {
+    if (!conv) return 'Unknown'
+    if (conv.userId === user?.id) return conv.photographer?.name ?? 'Photographer'
+    return conv.user?.name ?? 'Client'
+  }
+
   return (
     <div className="conversations-page">
       <div className="page-container">
@@ -267,14 +273,14 @@ export default function Conversations() {
                   onClick={() => selectConversation(conv.id)}
                 >
                   <div className="conversation-avatar">
-                    {conv.photographer?.name?.[0] ?? '?'}
+                    {getPartnerName(conv)[0] ?? '?'}
                   </div>
                   <div className="conversation-info">
                     <span className="conversation-name">
-                      {conv.photographer?.name ?? 'Photographer'}
+                      {getPartnerName(conv)}
                     </span>
                     <span className="conversation-preview">
-                      {conv.photographer?.city ?? ''}
+                      {conv.userId === user?.id ? (conv.photographer?.city ?? '') : ''}
                     </span>
                   </div>
                   <span className="conversation-time">
@@ -307,14 +313,14 @@ export default function Conversations() {
               <div className="thread-layout">
                 <div className="thread-header">
                   <div className="conversation-avatar">
-                    {activeConv?.photographer?.name?.[0] ?? '?'}
+                    {getPartnerName(activeConv)[0] ?? '?'}
                   </div>
                   <div>
                     <span className="thread-header-name">
-                      {activeConv?.photographer?.name ?? 'Photographer'}
+                      {getPartnerName(activeConv)}
                     </span>
                     <span className="thread-header-city">
-                      {activeConv?.photographer?.city ?? ''}
+                      {activeConv?.userId === user?.id ? (activeConv?.photographer?.city ?? '') : ''}
                     </span>
                   </div>
                   {connected && (
