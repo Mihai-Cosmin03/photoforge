@@ -16,12 +16,32 @@ export class ConversationsService {
     private phRepo: Repository<Photographer>,
   ) {}
 
-  findByUser(userId: string) {
-    return this.convRepo.find({
+  async findByUser(userId: string) {
+    const asClient = await this.convRepo.find({
       where: { userId },
-      relations: ['photographer'],
+      relations: ['photographer', 'user'],
       order: { createdAt: 'DESC' },
     });
+
+    const ph = await this.phRepo.findOne({ where: { userId } });
+    let asPhotographer: Conversation[] = [];
+    if (ph) {
+      asPhotographer = await this.convRepo.find({
+        where: { photographerId: ph.id },
+        relations: ['photographer', 'user'],
+        order: { createdAt: 'DESC' },
+      });
+    }
+
+    const seen = new Set<string>();
+    const merged = [...asClient, ...asPhotographer]
+      .filter((c) => { if (seen.has(c.id)) return false; seen.add(c.id); return true; })
+      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+
+    return merged.map((c) => ({
+      ...c,
+      user: c.user ? { id: c.user.id, name: c.user.name, email: c.user.email } : null,
+    }));
   }
 
   async findOrCreate(userId: string, photographerId: number) {
