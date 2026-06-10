@@ -15,7 +15,17 @@ export const getAllCategories = async () => {
   try {
     const res = await fetchWithTimeout(`${API}/categories`)
     if (!res.ok) throw new Error()
-    return res.json()
+    const data = await res.json()
+    // Fill missing coverImage/heroTitle/heroSubtitle from local mock data
+    return data.map((cat) => {
+      const mock = categoriesMock.find((m) => m.slug === cat.slug)
+      return {
+        ...cat,
+        coverImage: cat.coverImage || mock?.coverImage || null,
+        heroTitle: cat.heroTitle || mock?.heroTitle || cat.name,
+        heroSubtitle: cat.heroSubtitle || mock?.heroSubtitle || '',
+      }
+    })
   } catch {
     return sorted(categoriesMock)
   }
