@@ -41,7 +41,7 @@ export class Portfolio {
   @JoinColumn({ name: 'photographer_id' })
   photographer: Photographer;
 
-  @Column({ name: 'cover_image', nullable: true })
+  @Column({ name: 'cover_image', type: 'varchar', nullable: true })
   coverImage: string | null;
 
   @Column({ default: false })
