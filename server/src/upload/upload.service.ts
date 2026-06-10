@@ -24,6 +24,9 @@ export class UploadService {
         endpoint: `https://${accountId}.r2.cloudflarestorage.com`,
         credentials: { accessKeyId: accessKey, secretAccessKey: secretKey },
       });
+      console.log(`[UploadService] R2 configured — bucket: ${this.bucket}, publicUrl: ${this.publicUrl}`);
+    } else {
+      console.warn('[UploadService] R2 NOT configured — using local filesystem (uploads will be lost on redeploy)');
     }
   }
 
