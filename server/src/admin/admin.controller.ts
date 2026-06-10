@@ -31,6 +31,12 @@ export class AdminController {
     return this.portfoliosService.findPending();
   }
 
+  @Delete('portfolios/empty')
+  deleteEmptyPortfolios(@CurrentUser() admin: any) {
+    this.auditLogService.log(admin.id, admin.name, 'delete_empty_portfolios', 'Deleted all empty portfolios').catch(() => null);
+    return this.portfoliosService.deleteEmpty();
+  }
+
   @Get('audit-log')
   getAuditLog() {
     return this.auditLogService.findAll();

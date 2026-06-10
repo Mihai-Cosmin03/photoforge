@@ -28,18 +28,8 @@ import {
   setCoverImage,
 } from '../services/uploadService'
 import { getMyPhotographerProfile } from '../services/profileService'
+import { getAllCategories } from '../services/categoriesService'
 import './MyPortfolios.css'
-
-const CATEGORIES = [
-  { slug: 'wedding', name: 'Wedding' },
-  { slug: 'portrait', name: 'Portrait' },
-  { slug: 'landscape', name: 'Landscape' },
-  { slug: 'event', name: 'Event' },
-  { slug: 'fashion', name: 'Fashion' },
-  { slug: 'street', name: 'Street' },
-  { slug: 'newborn', name: 'Newborn' },
-  { slug: 'commercial', name: 'Commercial' },
-]
 
 function slugify(str) {
   return str
@@ -184,6 +174,7 @@ export default function MyPortfolios() {
 
   const [photographer, setPhotographer] = useState(null)
   const [portfolios, setPortfolios] = useState([])
+  const [categories, setCategories] = useState([])
   const [loading, setLoading] = useState(true)
   const [showForm, setShowForm] = useState(false)
   const [creating, setCreating] = useState(false)
@@ -195,7 +186,7 @@ export default function MyPortfolios() {
   const [form, setForm] = useState({
     title: '',
     description: '',
-    categorySlug: 'wedding',
+    categorySlug: '',
   })
 
   const sensors = useSensors(
@@ -210,10 +201,14 @@ export default function MyPortfolios() {
   async function load() {
     setLoading(true)
     try {
-      const [ph, pfs] = await Promise.all([
+      const [ph, pfs, cats] = await Promise.all([
         getMyPhotographerProfile(token),
         getMyPortfolios(token),
+        getAllCategories(),
       ])
+      const catList = cats || []
+      setCategories(catList)
+      if (catList.length > 0) setForm((f) => ({ ...f, categorySlug: f.categorySlug || catList[0].slug }))
       setPhotographer(ph)
       // Normalise images: backend returns raw PortfolioImage objects
       setPortfolios(
@@ -249,7 +244,7 @@ export default function MyPortfolios() {
       })
       toast.success('Portfolio created!')
       setShowForm(false)
-      setForm({ title: '', description: '', categorySlug: 'wedding' })
+      setForm({ title: '', description: '', categorySlug: categories[0]?.slug || '' })
       await load()
     } catch (err) {
       toast.error(err.message || 'Failed to create portfolio.')
@@ -407,7 +402,7 @@ export default function MyPortfolios() {
                   value={form.categorySlug}
                   onChange={(e) => setForm((f) => ({ ...f, categorySlug: e.target.value }))}
                 >
-                  {CATEGORIES.map((c) => (
+                  {categories.map((c) => (
                     <option key={c.slug} value={c.slug}>{c.name}</option>
                   ))}
                 </select>
