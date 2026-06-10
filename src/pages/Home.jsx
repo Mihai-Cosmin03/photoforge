@@ -468,9 +468,16 @@ export default function Home() {
         getAllPortfolios(),
       ])
       setPhotographers(phs.filter(p => p.status === 'approved' || p.featured).slice(0, 8))
+      const portfoliosByCat = {}
+      ports.forEach(p => {
+        const slug = p.category?.slug || p.categorySlug
+        if (slug && p.coverImage && !portfoliosByCat[slug]) {
+          portfoliosByCat[slug] = p.coverImage
+        }
+      })
       setCategories(cats.map(cat => ({
         ...cat,
-        coverImage: cat.coverImage || `/cats/${cat.slug}.jpeg`,
+        coverImage: cat.coverImage || portfoliosByCat[cat.slug] || `/cats/${cat.slug}.jpeg`,
       })))
       setPortfolios(ports.slice(0, 12))
 
