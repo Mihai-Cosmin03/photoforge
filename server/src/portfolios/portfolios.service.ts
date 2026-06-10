@@ -217,7 +217,7 @@ export class PortfoliosService {
     await this.repo
       .createQueryBuilder()
       .update()
-      .set({ coverImage: null })
+      .set({ coverImage: () => 'NULL' })
       .where("cover_image LIKE '/uploads/%'")
       .execute();
 
