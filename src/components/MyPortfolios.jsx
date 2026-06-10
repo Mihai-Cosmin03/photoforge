@@ -25,6 +25,7 @@ import {
   addImageToPortfolio,
   deletePortfolioImage,
   reorderPortfolioImages,
+  setCoverImage,
 } from '../services/uploadService'
 import { getMyPhotographerProfile } from '../services/profileService'
 import './MyPortfolios.css'
@@ -48,7 +49,7 @@ function slugify(str) {
 }
 
 // ── Sortable image thumb ──────────────────────────────────────────────────
-function SortableThumb({ image, onDelete, deleting }) {
+function SortableThumb({ image, onDelete, deleting, isCover, onSetCover, settingCover }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
     useSortable({ id: image.id })
 
@@ -63,8 +64,11 @@ function SortableThumb({ image, onDelete, deleting }) {
     <div
       ref={setNodeRef}
       style={style}
-      className="my-portfolio-thumb-wrap"
+      className={`my-portfolio-thumb-wrap ${isCover ? 'my-portfolio-thumb-wrap--cover' : ''}`}
     >
+      {isCover && (
+        <span className="my-portfolio-cover-badge" title="Cover image">★</span>
+      )}
       <img
         src={image.url}
         alt=""
@@ -74,14 +78,26 @@ function SortableThumb({ image, onDelete, deleting }) {
         {...listeners}
         draggable={false}
       />
-      <button
-        className="my-portfolio-thumb-delete"
-        onClick={() => onDelete(image.id)}
-        disabled={deleting}
-        title="Remove"
-      >
-        ×
-      </button>
+      <div className="my-portfolio-thumb-actions">
+        {!isCover && (
+          <button
+            className="my-portfolio-thumb-set-cover"
+            onClick={() => onSetCover(image.url)}
+            disabled={settingCover}
+            title="Set as cover"
+          >
+            ★
+          </button>
+        )}
+        <button
+          className="my-portfolio-thumb-delete"
+          onClick={() => onDelete(image.id)}
+          disabled={deleting}
+          title="Remove"
+        >
+          ×
+        </button>
+      </div>
     </div>
   )
 }
@@ -174,6 +190,7 @@ export default function MyPortfolios() {
   const [uploadingFor, setUploadingFor] = useState(null)
   const [uploadProgress, setUploadProgress] = useState({ done: 0, total: 0 })
   const [deletingId, setDeletingId] = useState(null)
+  const [settingCoverFor, setSettingCoverFor] = useState(null)
 
   const [form, setForm] = useState({
     title: '',
@@ -281,6 +298,21 @@ export default function MyPortfolios() {
       toast.error('Failed to delete image.')
     } finally {
       setDeletingId(null)
+    }
+  }
+
+  const handleSetCover = async (portfolioSlug, imageUrl) => {
+    setSettingCoverFor(portfolioSlug)
+    try {
+      await setCoverImage(token, portfolioSlug, imageUrl)
+      setPortfolios((prev) =>
+        prev.map((p) => (p.slug === portfolioSlug ? { ...p, coverImage: imageUrl } : p))
+      )
+      toast.success('Cover image updated.')
+    } catch {
+      toast.error('Failed to set cover image.')
+    } finally {
+      setSettingCoverFor(null)
     }
   }
 
@@ -465,6 +497,9 @@ export default function MyPortfolios() {
                               image={img}
                               onDelete={(id) => handleDelete(p.slug, id)}
                               deleting={deletingId === img.id}
+                              isCover={img.url === p.coverImage}
+                              onSetCover={(url) => handleSetCover(p.slug, url)}
+                              settingCover={settingCoverFor === p.slug}
                             />
                           ))}
                         </div>
