@@ -248,12 +248,15 @@ function CategoriesShowcase({ categories }) {
           {categories.slice(0, 6).map((cat, i) => (
             <motion.div key={cat.slug} variants={fadeUp(i * 0.04)}>
               <Link to={`/categories/${cat.slug}`} className="home-cats__card">
-                <BlurImage
-                  src={cat.coverImage}
-                  alt={cat.name}
-                  aspectRatio={i === 0 || i === 3 ? '3/4' : '4/3'}
-                  objectFit="cover"
-                  wrapperClassName="home-cats__img"
+                <div
+                  className="home-cats__img"
+                  style={{
+                    aspectRatio: i === 0 || i === 3 ? '3/4' : '4/3',
+                    backgroundImage: cat.coverImage ? `url(${cat.coverImage})` : undefined,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundColor: 'var(--bg-raised)',
+                  }}
                 />
                 <div className="home-cats__card-overlay">
                   <span className="home-cats__card-name">{cat.name}</span>
