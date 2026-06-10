@@ -202,6 +202,28 @@ export class PortfoliosService {
     return { deleted: empty.length };
   }
 
+  async cleanBrokenImages() {
+    // Remove image records pointing to local /uploads/ paths (lost on Railway redeploy)
+    const broken = await this.imageRepo
+      .createQueryBuilder('img')
+      .where("img.image_url LIKE '/uploads/%'")
+      .getMany();
+
+    if (broken.length > 0) {
+      await this.imageRepo.remove(broken);
+    }
+
+    // Clear coverImage on portfolios that still point to local paths
+    await this.repo
+      .createQueryBuilder()
+      .update()
+      .set({ coverImage: null })
+      .where("cover_image LIKE '/uploads/%'")
+      .execute();
+
+    return { removedImages: broken.length };
+  }
+
   async findPending() {
     return this.repo.find({
       where: { status: 'pending' },

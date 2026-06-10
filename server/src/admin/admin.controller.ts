@@ -37,6 +37,12 @@ export class AdminController {
     return this.portfoliosService.deleteEmpty();
   }
 
+  @Delete('portfolios/broken-images')
+  cleanBrokenImages(@CurrentUser() admin: any) {
+    this.auditLogService.log(admin.id, admin.name, 'clean_broken_images', 'Removed broken local-path images').catch(() => null);
+    return this.portfoliosService.cleanBrokenImages();
+  }
+
   @Get('audit-log')
   getAuditLog() {
     return this.auditLogService.findAll();
