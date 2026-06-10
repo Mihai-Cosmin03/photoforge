@@ -13,6 +13,7 @@ import { getAllPhotographers } from '../services/photographersService'
 import { getAllPortfolios } from '../services/portfoliosService'
 import { API_URL } from '../config.js'
 import FocusReticle from '../photo-fx/components/FocusReticle'
+import categoriesMock from '../data/categories'
 import './Home.css'
 
 // ── Animation helpers ─────────────────────────────────────────────────────────
@@ -468,7 +469,10 @@ export default function Home() {
         getAllPortfolios(),
       ])
       setPhotographers(phs.filter(p => p.status === 'approved' || p.featured).slice(0, 8))
-      setCategories(cats)
+      setCategories(cats.map(cat => {
+        const mock = categoriesMock.find(m => m.slug === cat.slug)
+        return { ...cat, coverImage: cat.coverImage || mock?.coverImage || null }
+      }))
       setPortfolios(ports.slice(0, 12))
 
       // Collect avatar images for the collage
