@@ -1,14 +1,35 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, OnApplicationBootstrap } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Category } from './category.entity';
 
+const DEFAULT_CATEGORIES = [
+  { slug: 'wedding',   name: 'Wedding',    description: 'Elegant wedding sessions and candid moments.',              featured: true  },
+  { slug: 'portraits', name: 'Portraits',  description: 'Studio portraits and creative lighting.',                   featured: true  },
+  { slug: 'fashion',   name: 'Fashion',    description: 'Editorial shoots, runway and creative styling.',            featured: true  },
+  { slug: 'concerts',  name: 'Concerts',   description: 'Live energy, stage emotion and crowd atmosphere.',          featured: false },
+  { slug: 'events',    name: 'Events',     description: 'Corporate events, private parties and conferences.',        featured: false },
+  { slug: 'commercial',name: 'Commercial', description: 'Product photography and brand campaigns.',                  featured: false },
+  { slug: 'travel',    name: 'Travel',     description: 'Landscape, nature and destination photography.',            featured: false },
+  { slug: 'lifestyle', name: 'Lifestyle',  description: 'Natural moments, everyday stories and candid life.',        featured: false },
+];
+
 @Injectable()
-export class CategoriesService {
+export class CategoriesService implements OnApplicationBootstrap {
   constructor(
     @InjectRepository(Category)
     private repo: Repository<Category>,
   ) {}
+
+  async onApplicationBootstrap() {
+    for (const cat of DEFAULT_CATEGORIES) {
+      const exists = await this.repo.findOne({ where: { slug: cat.slug } });
+      if (!exists) {
+        await this.repo.save(this.repo.create(cat));
+        console.log(`[Seed] Created category: ${cat.slug}`);
+      }
+    }
+  }
 
   async findAll() {
     const categories = await this.repo.find();
