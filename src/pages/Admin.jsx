@@ -9,6 +9,7 @@ import {
   approvePortfolio,
   rejectPortfolio,
   deleteEmptyPortfolios,
+  cleanBrokenImages,
   getPendingPhotographers,
   approvePhotographer,
   getAllUsers,
@@ -248,7 +249,21 @@ export default function Admin() {
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.25 }}
               >
-                <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 16 }}>
+                <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end', marginBottom: 16 }}>
+                  <button
+                    className="btn-ghost btn-sm admin-btn-reject"
+                    onClick={async () => {
+                      if (!window.confirm('Remove all broken image records (local /uploads/ paths)?')) return
+                      try {
+                        const { removedImages } = await cleanBrokenImages(token)
+                        toast.success(`Removed ${removedImages} broken image record${removedImages !== 1 ? 's' : ''}.`)
+                      } catch {
+                        toast.error('Failed to clean broken images.')
+                      }
+                    }}
+                  >
+                    Clean broken images
+                  </button>
                   <button
                     className="btn-ghost btn-sm admin-btn-reject"
                     onClick={async () => {
