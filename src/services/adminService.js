@@ -53,6 +53,15 @@ export const getAllReviews = async (token) => {
   return res.json()
 }
 
+export const deleteEmptyPortfolios = async (token) => {
+  const res = await fetch(`${API}/portfolios/empty`, {
+    method: 'DELETE',
+    headers: headers(token),
+  })
+  if (!res.ok) throw new Error('Failed to delete empty portfolios')
+  return res.json()
+}
+
 export const deleteReview = async (token, id) => {
   const res = await fetch(`${API}/reviews/${id}`, {
     method: 'DELETE',

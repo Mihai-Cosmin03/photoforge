@@ -194,6 +194,14 @@ export class PortfoliosService {
     return this.repo.findOne({ where: { id }, relations: ['images', 'photographer', 'category'] });
   }
 
+  async deleteEmpty() {
+    const all = await this.repo.find({ relations: ['images'] });
+    const empty = all.filter((p) => !p.images || p.images.length === 0);
+    if (empty.length === 0) return { deleted: 0 };
+    await this.repo.remove(empty);
+    return { deleted: empty.length };
+  }
+
   async findPending() {
     return this.repo.find({
       where: { status: 'pending' },

@@ -8,6 +8,7 @@ import {
   getPendingPortfolios,
   approvePortfolio,
   rejectPortfolio,
+  deleteEmptyPortfolios,
   getPendingPhotographers,
   approvePhotographer,
   getAllUsers,
@@ -247,6 +248,23 @@ export default function Admin() {
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.25 }}
               >
+                <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 16 }}>
+                  <button
+                    className="btn-ghost btn-sm admin-btn-reject"
+                    onClick={async () => {
+                      if (!window.confirm('Delete all portfolios with no images?')) return
+                      try {
+                        const { deleted } = await deleteEmptyPortfolios(token)
+                        toast.success(`Deleted ${deleted} empty portfolio${deleted !== 1 ? 's' : ''}.`)
+                        setPortfolios((prev) => prev.filter((p) => p.images?.length > 0))
+                      } catch {
+                        toast.error('Failed to delete empty portfolios.')
+                      }
+                    }}
+                  >
+                    Delete empty portfolios
+                  </button>
+                </div>
                 {portfolios.length === 0 ? (
                   <div className="empty-state">
                     <h3>All caught up!</h3>
