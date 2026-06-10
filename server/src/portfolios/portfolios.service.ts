@@ -175,6 +175,13 @@ export class PortfoliosService {
     return this.findBySlugOrFail(slug);
   }
 
+  async setCoverImage(slug: string, imageUrl: string) {
+    const p = await this.findBySlug(slug);
+    if (!p) throw new NotFoundException(`Portfolio '${slug}' not found`);
+    await this.repo.update(p.id, { coverImage: imageUrl });
+    return this.findBySlugOrFail(slug);
+  }
+
   async toggleMaterialsEnabled(slug: string, value: boolean) {
     const p = await this.findBySlug(slug);
     if (!p) throw new NotFoundException(`Portfolio '${slug}' not found`);
@@ -195,11 +202,13 @@ export class PortfoliosService {
   }
 
   shape(p: Portfolio) {
+    const sortedImages = (p.images || [])
+      .sort((a, b) => a.displayOrder - b.displayOrder)
+      .map((img) => img.imageUrl);
     return {
       ...p,
-      images: (p.images || [])
-        .sort((a, b) => a.displayOrder - b.displayOrder)
-        .map((img) => img.imageUrl),
+      coverImage: p.coverImage || sortedImages[0] || null,
+      images: sortedImages,
     };
   }
 

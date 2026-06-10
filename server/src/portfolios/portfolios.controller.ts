@@ -65,6 +65,16 @@ export class PortfoliosController {
     return this.portfoliosService.reorderImages(slug, orderedIds);
   }
 
+  @Patch(':slug/cover')
+  @UseGuards(JwtAuthGuard)
+  async setCover(@Param('slug') slug: string, @Body('imageUrl') imageUrl: string, @CurrentUser() user: any) {
+    const portfolio = await this.portfoliosService.findBySlug(slug);
+    if (!portfolio) throw new NotFoundException(`Portfolio '${slug}' not found`);
+    const owns = await this.portfoliosService.userOwnsPortfolio(portfolio.id, user.id);
+    if (!owns) throw new ForbiddenException('You do not own this portfolio');
+    return this.portfoliosService.setCoverImage(slug, imageUrl);
+  }
+
   @Patch(':slug/materials-enabled')
   @UseGuards(JwtAuthGuard)
   async toggleMaterials(@Param('slug') slug: string, @Body('value') value: boolean, @CurrentUser() user: any) {

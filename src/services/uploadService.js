@@ -60,6 +60,19 @@ export const deletePortfolioImage = async (token, imageId) => {
   if (!res.ok) throw new Error('Failed to delete image')
 }
 
+export const setCoverImage = async (token, slug, imageUrl) => {
+  const res = await fetch(`${API}/portfolios/${slug}/cover`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ imageUrl }),
+  })
+  if (!res.ok) throw new Error('Failed to set cover image')
+  return res.json()
+}
+
 export const reorderPortfolioImages = async (token, slug, orderedIds) => {
   const res = await fetch(`${API}/portfolios/${slug}/images/reorder`, {
     method: 'PATCH',
