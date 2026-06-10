@@ -203,22 +203,22 @@ export class PortfoliosService {
   }
 
   async cleanBrokenImages() {
-    // Remove image records pointing to local /uploads/ paths (lost on Railway redeploy)
+    // Remove image records pointing to any /uploads/ path (local or via Railway domain)
     const broken = await this.imageRepo
       .createQueryBuilder('img')
-      .where("img.image_url LIKE '/uploads/%'")
+      .where("img.image_url LIKE '%/uploads/%'")
       .getMany();
 
     if (broken.length > 0) {
       await this.imageRepo.remove(broken);
     }
 
-    // Clear coverImage on portfolios that still point to local paths
+    // Clear coverImage on portfolios that still point to any /uploads/ path
     await this.repo
       .createQueryBuilder()
       .update()
       .set({ coverImage: () => 'NULL' })
-      .where("cover_image LIKE '/uploads/%'")
+      .where("cover_image LIKE '%/uploads/%'")
       .execute();
 
     return { removedImages: broken.length };
