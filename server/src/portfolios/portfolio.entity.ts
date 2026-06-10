@@ -42,7 +42,7 @@ export class Portfolio {
   photographer: Photographer;
 
   @Column({ name: 'cover_image', nullable: true })
-  coverImage: string;
+  coverImage: string | null;
 
   @Column({ default: false })
   featured: boolean;
