@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useToast } from '../context/ToastContext'
+import { LockIcon } from './Icons'
 import './MyGalleries.css'
 
 import { API_URL } from '../config.js'
@@ -121,7 +122,7 @@ function GalleryCard({ gallery, token, onDelete, onUpdate }) {
           <h3 className="gallery-card__title">{gallery.title}</h3>
           <div className="gallery-card__meta">
             <span>{images.length} photo{images.length !== 1 ? 's' : ''}</span>
-            {emails.length > 0 && <span>🔒 {emails.length} recipient{emails.length !== 1 ? 's' : ''}</span>}
+            {emails.length > 0 && <span><LockIcon /> {emails.length} recipient{emails.length !== 1 ? 's' : ''}</span>}
             {expired && <span className="gallery-card__expired-badge">Expired</span>}
             {gallery.expiresAt && !expired && (
               <span>Expires {new Date(gallery.expiresAt).toLocaleDateString()}</span>

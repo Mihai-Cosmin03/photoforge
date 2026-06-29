@@ -12,6 +12,7 @@ import MyGalleries from '../components/MyGalleries'
 import PricingPackages from '../components/PricingPackages'
 import AvailabilityCalendar from '../components/AvailabilityCalendar'
 import { getProfile, updateProfile, uploadAvatar, getMyPhotographerProfile } from '../services/profileService'
+import { CameraIcon, PaletteIcon } from '../components/Icons'
 import './Profile.css'
 
 export default function Profile() {
@@ -115,14 +116,14 @@ export default function Profile() {
                 disabled={uploading}
                 title="Upload photo"
               >
-                {uploading ? '…' : '📷'}
+                {uploading ? '…' : <CameraIcon />}
               </button>
               <button
                 className="profile-avatar-btn"
                 onClick={() => setShowPicker(v => !v)}
                 title="Choose avatar"
               >
-                🎨
+                <PaletteIcon />
               </button>
             </div>
             <input

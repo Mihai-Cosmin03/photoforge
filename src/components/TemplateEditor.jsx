@@ -2,6 +2,7 @@ import { useState, useRef, useCallback, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import TemplatePreview from './TemplatePreview'
+import { PencilIcon, CameraIcon, PaletteIcon, ArrowDownIcon } from './Icons'
 import { TEMPLATE_CATEGORIES } from '../data/templates'
 import { COLOR_SLOTS, PRINT_DIMS, DESIGN_DIMS } from '../data/templateColors'
 import templateCSS from './TemplatePreview.css?inline'
@@ -205,14 +206,14 @@ export default function TemplateEditor({ template, onClose }) {
             <div className="te-right-panel">
               <div className="te-tabs">
                 <button className={`te-tab ${tab==='content'?'active':''}`} onClick={()=>setTab('content')}>
-                  ✏ Content
+                  <PencilIcon /> Content
                 </button>
                 <button className={`te-tab te-tab--photo ${tab==='photo'?'active':''}`} onClick={()=>setTab('photo')}>
-                  📷 Photo
+                  <CameraIcon /> Photo
                   {data.photo && <span className="te-tab-dot" />}
                 </button>
                 <button className={`te-tab ${tab==='colors'?'active':''}`} onClick={()=>setTab('colors')}>
-                  🎨 Colors
+                  <PaletteIcon /> Colors
                 </button>
               </div>
 
@@ -281,7 +282,7 @@ export default function TemplateEditor({ template, onClose }) {
                       onClick={() => fileInputRef.current?.click()}
                     >
                       <div className="te-dropzone-icon">
-                        {isDragging ? '⬇' : '📷'}
+                        {isDragging ? <ArrowDownIcon /> : <CameraIcon />}
                       </div>
                       <div className="te-dropzone-title">
                         {isDragging ? 'Drop to upload' : 'Add your photo'}
@@ -366,7 +367,7 @@ export default function TemplateEditor({ template, onClose }) {
           <div className="te-footer">
             <button className="btn-ghost btn-sm" onClick={onClose}>Cancel</button>
             <button className="btn-primary" onClick={handleDownload} disabled={downloading}>
-              {downloading ? 'Preparing…' : '⬇ Download PDF'}
+              {downloading ? 'Preparing…' : <><ArrowDownIcon /> Download PDF</>}
             </button>
           </div>
         </motion.div>

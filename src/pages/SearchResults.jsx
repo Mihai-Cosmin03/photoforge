@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useSearchParams, Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
+import { CameraIcon } from '../components/Icons'
 import './SearchResults.css'
 
 import { API_URL } from '../config.js'
@@ -222,7 +223,7 @@ export default function SearchResults() {
                         {p.coverImage ? (
                           <img src={p.coverImage} alt={p.title} className="search-portfolio-cover" />
                         ) : (
-                          <div className="search-portfolio-cover-placeholder">📷</div>
+                          <div className="search-portfolio-cover-placeholder"><CameraIcon /></div>
                         )}
                         <div className="search-portfolio-info">
                           <span className="search-portfolio-title">{p.title}</span>

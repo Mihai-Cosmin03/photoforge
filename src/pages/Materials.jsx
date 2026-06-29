@@ -6,6 +6,7 @@ import { useAuth } from '../context/AuthContext'
 import HeroCanvas from '../components/HeroCanvas'
 import TemplatePreview from '../components/TemplatePreview'
 import TemplateEditor from '../components/TemplateEditor'
+import { UnlockIcon } from '../components/Icons'
 import { TEMPLATES, TEMPLATE_CATEGORIES } from '../data/templates'
 import './Materials.css'
 
@@ -265,7 +266,7 @@ export default function Materials() {
         {!user && (
           <div className="mat-auth-banner">
             <div className="mat-auth-banner-content">
-              <span className="mat-auth-banner-icon">🔓</span>
+              <span className="mat-auth-banner-icon"><UnlockIcon /></span>
               <div>
                 <strong>Sign in to use templates</strong>
                 <p>Create a free account to customize and download all templates.</p>

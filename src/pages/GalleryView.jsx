@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useParams } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import { SearchIcon, HourglassIcon, WarningIcon, LockIcon } from '../components/Icons'
 import { API_URL } from '../config.js'
 import './GalleryView.css'
 
@@ -77,7 +78,7 @@ export default function GalleryView() {
   if (status === 'notfound') {
     return (
       <div className="gallery-view gallery-view--centered">
-        <div className="gallery-view__icon">🔍</div>
+        <div className="gallery-view__icon"><SearchIcon /></div>
         <h2 className="gallery-view__heading">Gallery not found</h2>
         <p className="gallery-view__hint">This link may have been removed or is incorrect.</p>
       </div>
@@ -87,7 +88,7 @@ export default function GalleryView() {
   if (status === 'expired') {
     return (
       <div className="gallery-view gallery-view--centered">
-        <div className="gallery-view__icon">⏳</div>
+        <div className="gallery-view__icon"><HourglassIcon /></div>
         <h2 className="gallery-view__heading">Gallery has expired</h2>
         <p className="gallery-view__hint">This gallery is no longer available. Please contact your photographer.</p>
       </div>
@@ -97,7 +98,7 @@ export default function GalleryView() {
   if (status === 'error') {
     return (
       <div className="gallery-view gallery-view--centered">
-        <div className="gallery-view__icon">⚠️</div>
+        <div className="gallery-view__icon"><WarningIcon /></div>
         <h2 className="gallery-view__heading">Something went wrong</h2>
         <p className="gallery-view__hint">Please try again later.</p>
       </div>
@@ -108,7 +109,7 @@ export default function GalleryView() {
     return (
       <div className="gallery-view gallery-view--centered">
         <div className="gallery-view__gate">
-          <div className="gallery-view__icon">🔒</div>
+          <div className="gallery-view__icon"><LockIcon /></div>
           <h2 className="gallery-view__heading">Private Gallery</h2>
           <p className="gallery-view__hint">
             This gallery is restricted. Enter the email address your photographer shared this with.

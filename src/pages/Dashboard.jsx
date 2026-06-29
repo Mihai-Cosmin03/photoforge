@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { useAuth } from '../context/AuthContext'
 import { useToast } from '../context/ToastContext'
 import { CardGridSkeleton } from '../components/Skeleton'
+import { CameraIcon, CalendarIcon, MoneyIcon, ChatIcon } from '../components/Icons'
 import './Dashboard.css'
 
 import { API_URL } from '../config.js'
@@ -243,19 +244,19 @@ export default function Dashboard() {
           <h2 className="dash-card__title">Quick actions</h2>
           <div className="dash-actions">
             <Link to="/profile" className="dash-action-btn">
-              <span className="dash-action-btn__icon">📸</span>
+              <span className="dash-action-btn__icon"><CameraIcon /></span>
               <span>Add portfolio</span>
             </Link>
             <Link to="/profile" className="dash-action-btn">
-              <span className="dash-action-btn__icon">📅</span>
+              <span className="dash-action-btn__icon"><CalendarIcon /></span>
               <span>Set availability</span>
             </Link>
             <Link to="/profile" className="dash-action-btn">
-              <span className="dash-action-btn__icon">💰</span>
+              <span className="dash-action-btn__icon"><MoneyIcon /></span>
               <span>Manage packages</span>
             </Link>
             <Link to="/conversations" className="dash-action-btn">
-              <span className="dash-action-btn__icon">💬</span>
+              <span className="dash-action-btn__icon"><ChatIcon /></span>
               <span>Messages</span>
             </Link>
           </div>

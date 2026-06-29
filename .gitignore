@@ -137,6 +137,25 @@ claude_code_photoforge_rebuild_prompt.md
 scratch/
 notes/
 
+# Teză / lucrare scrisă — drafturi și corecturi (nu aparțin repo-ului aplicației)
+teza*.txt
+teza*.pdf
+teza*.docx
+capitol*.txt
+capitol*.pdf
+capitol*.docx
+corect*.txt
+corect*.pdf
+corect*.docx
+*.tex
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.synctex.gz
+
 
 # ── 14. Certificate / Chei criptografice ────────────────────────────
 *.pem

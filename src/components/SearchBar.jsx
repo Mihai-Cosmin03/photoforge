@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
+import { CameraIcon } from './Icons'
 import './SearchBar.css'
 
 import { API_URL } from '../config.js'
@@ -148,7 +149,7 @@ export default function SearchBar() {
                         {p.coverImage ? (
                           <img src={p.coverImage} alt="" className="search-result-cover" />
                         ) : (
-                          <div className="search-result-cover-placeholder">📷</div>
+                          <div className="search-result-cover-placeholder"><CameraIcon /></div>
                         )}
                         <div className="search-result-info">
                           <span className="search-result-name">{p.title}</span>

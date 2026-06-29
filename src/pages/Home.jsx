@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { SearchIcon, ChatIcon, CalendarIcon, PaletteIcon, SparkleIcon, MoneyIcon } from '../components/Icons'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { Helmet } from 'react-helmet-async'
 import { useAuth } from '../context/AuthContext'
@@ -97,14 +98,14 @@ function PhotoCollage({ photos }) {
 
 // ── How it works ──────────────────────────────────────────────────────────────
 const STEPS_CLIENT = [
-  { n: '01', icon: '🔍', title: 'Discover',     desc: 'Browse curated portfolios by category, style, or location. Use filters to find your perfect match.' },
-  { n: '02', icon: '💬', title: 'Connect',       desc: 'Message photographers directly. Ask questions, share your vision, request a custom quote.' },
-  { n: '03', icon: '📅', title: 'Book',          desc: 'Confirm availability, agree on details, and lock in your session — all inside PhotoForge.' },
+  { n: '01', icon: <SearchIcon />,   title: 'Discover', desc: 'Browse curated portfolios by category, style, or location. Use filters to find your perfect match.' },
+  { n: '02', icon: <ChatIcon />,     title: 'Connect',  desc: 'Message photographers directly. Ask questions, share your vision, request a custom quote.' },
+  { n: '03', icon: <CalendarIcon />, title: 'Book',     desc: 'Confirm availability, agree on details, and lock in your session — all inside PhotoForge.' },
 ]
 const STEPS_PHOTOGRAPHER = [
-  { n: '01', icon: '🎨', title: 'Build your profile', desc: 'Upload your best work, set your specialties, location, and pricing packages.' },
-  { n: '02', icon: '✨', title: 'Get discovered',      desc: 'Your portfolio appears in search results and category pages seen by thousands of clients.' },
-  { n: '03', icon: '💰', title: 'Grow your business',  desc: 'Receive booking requests, manage your calendar, and build lasting client relationships.' },
+  { n: '01', icon: <PaletteIcon />, title: 'Build your profile', desc: 'Upload your best work, set your specialties, location, and pricing packages.' },
+  { n: '02', icon: <SparkleIcon />, title: 'Get discovered',     desc: 'Your portfolio appears in search results and category pages seen by thousands of clients.' },
+  { n: '03', icon: <MoneyIcon />,   title: 'Grow your business', desc: 'Receive booking requests, manage your calendar, and build lasting client relationships.' },
 ]
 
 function HowItWorks() {

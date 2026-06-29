@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useToast } from '../context/ToastContext'
+import { ClockIcon, CameraIcon } from './Icons'
 import './PricingPackages.css'
 
 import { API_URL } from '../config.js'
@@ -72,8 +73,8 @@ function PackageCard({ pkg, isOwner, onDelete, onEdit, index }) {
 
       {(pkg.duration || pkg.maxPhotos) && (
         <div className="pkg-card__chips">
-          {pkg.duration && <span className="pkg-chip">🕐 {pkg.duration}</span>}
-          {pkg.maxPhotos > 0 && <span className="pkg-chip">📷 Up to {pkg.maxPhotos} photos</span>}
+          {pkg.duration && <span className="pkg-chip"><ClockIcon /> {pkg.duration}</span>}
+          {pkg.maxPhotos > 0 && <span className="pkg-chip"><CameraIcon /> Up to {pkg.maxPhotos} photos</span>}
         </div>
       )}
 

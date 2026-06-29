@@ -1,11 +1,11 @@
 export const TEMPLATE_CATEGORIES = [
   { id: 'all',           label: 'All Templates',  icon: '◻' },
-  { id: 'business-card', label: 'Business Cards', icon: '🪪' },
-  { id: 'cv',            label: 'CV / Resume',    icon: '📄' },
-  { id: 'flyer',         label: 'Flyers',         icon: '📋' },
-  { id: 'invitation',    label: 'Invitations',    icon: '✉️' },
-  { id: 'postcard',      label: 'Postcards',      icon: '🗺️' },
-  { id: 'poster',        label: 'Posters',        icon: '🖼️' },
+  { id: 'business-card', label: 'Business Cards', icon: null },
+  { id: 'cv',            label: 'CV / Resume',    icon: null },
+  { id: 'flyer',         label: 'Flyers',         icon: null },
+  { id: 'invitation',    label: 'Invitations',    icon: null },
+  { id: 'postcard',      label: 'Postcards',      icon: null },
+  { id: 'poster',        label: 'Posters',        icon: null },
 ]
 
 export const TEMPLATES = [

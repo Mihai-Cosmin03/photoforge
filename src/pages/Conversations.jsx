@@ -9,6 +9,7 @@ import {
   getMessages,
   startConversation,
 } from '../services/conversationsService'
+import { ChatIcon } from '../components/Icons'
 import './Conversations.css'
 
 function formatTime(dateStr) {
@@ -259,7 +260,7 @@ export default function Conversations() {
               </div>
             ) : conversations.length === 0 ? (
               <div className="conv-empty-list">
-                <span>💬</span>
+                <span><ChatIcon /></span>
                 <p>No conversations yet.</p>
                 <p className="conv-empty-hint">
                   Visit a photographer's profile and click "Message" to start a conversation.
@@ -305,7 +306,7 @@ export default function Conversations() {
 
             {!activeId ? (
               <div className="thread-empty">
-                <span className="thread-empty-icon">💬</span>
+                <span className="thread-empty-icon"><ChatIcon /></span>
                 <h3>Select a conversation</h3>
                 <p>Choose a conversation from the list to view your messages.</p>
               </div>

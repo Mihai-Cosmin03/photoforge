@@ -17,6 +17,7 @@ import { useToast } from '../context/ToastContext'
 import { usePolaroidToast } from '../photo-fx/components/PolaroidToast'
 import { getPhotographerBySlug } from '../services/photographersService'
 import { getPortfoliosByPhotographer } from '../services/portfoliosService'
+import { PhoneIcon, CameraIcon } from '../components/Icons'
 import './PhotographerDetails.css'
 
 function StatValue({ value }) {
@@ -159,7 +160,7 @@ export default function PhotographerDetails() {
                         setBookingType('consultation')
                         setShowBooking(true)
                       }}
-                    >📞 Intro Call</button>
+                    ><PhoneIcon /> Intro Call</button>
                   </>
                 )}
               </div>
@@ -280,7 +281,7 @@ export default function PhotographerDetails() {
               body: bookingType === 'consultation'
                 ? `${photographer.name} will reach out to schedule your intro call.`
                 : `Your request to ${photographer.name} is on its way.`,
-              icon: bookingType === 'consultation' ? '📞' : '📸',
+              icon: null,
               color: '#8B5CF6',
             })
             setTimeout(() => navigate('/profile'), 2000)

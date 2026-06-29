@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useAuth } from '../context/AuthContext'
 import { useToast } from '../context/ToastContext'
 import { getMyPhotographerProfile, applyAsPhotographer } from '../services/profileService'
+import { HourglassIcon, CameraIcon } from './Icons'
 import './PhotographerApplication.css'
 
 const SPECIALTIES = [
@@ -85,7 +86,7 @@ export default function PhotographerApplication() {
         transition={{ duration: 0.4 }}
       >
         <div className="ph-app-status__icon">
-          {isApproved ? '✓' : '⏳'}
+          {isApproved ? '✓' : <HourglassIcon />}
         </div>
         <div className="ph-app-status__text">
           <h3 className="ph-app-status__title">
@@ -123,7 +124,7 @@ export default function PhotographerApplication() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
           >
-            <div className="ph-app-cta__icon">📷</div>
+            <div className="ph-app-cta__icon"><CameraIcon /></div>
             <h3 className="ph-app-cta__title">Are you a photographer?</h3>
             <p className="ph-app-cta__desc">
               Join our platform as a verified photographer. Showcase your portfolio,

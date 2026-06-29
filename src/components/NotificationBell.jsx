@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
+import { ChatIcon, CalendarIcon, ClipboardIcon, CameraIcon, BellIcon } from './Icons'
 import './NotificationBell.css'
 
 import { API_URL } from '../config.js'
@@ -8,11 +9,11 @@ import { API_URL } from '../config.js'
 const API = API_URL
 
 const TYPE_ICONS = {
-  message: '💬',
-  booking_request: '📅',
-  booking_update: '📋',
+  message: <ChatIcon />,
+  booking_request: <CalendarIcon />,
+  booking_update: <ClipboardIcon />,
   review: '⭐',
-  application: '📸',
+  application: <CameraIcon />,
 }
 
 function timeAgo(dateStr) {
@@ -106,7 +107,7 @@ export default function NotificationBell({ token }) {
   return (
     <div className="notif-bell-wrap" ref={wrapRef}>
       <button className="notif-bell-btn" onClick={handleOpen} aria-label="Notifications">
-        🔔
+        <BellIcon />
         {count > 0 && (
           <span className="notif-badge">{count > 99 ? '99+' : count}</span>
         )}
@@ -140,7 +141,7 @@ export default function NotificationBell({ token }) {
                     className={`notif-item ${n.read ? 'notif-item--read' : ''}`}
                     onClick={() => handleClick(n)}
                   >
-                    <span className="notif-icon">{TYPE_ICONS[n.type] || '🔔'}</span>
+                    <span className="notif-icon">{TYPE_ICONS[n.type] ?? <BellIcon />}</span>
                     <div className="notif-content">
                       <span className="notif-item-title">{n.title}</span>
                       {n.body && <span className="notif-body">{n.body}</span>}

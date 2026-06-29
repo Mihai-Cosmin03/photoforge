@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react'
 import { useToast } from '../context/ToastContext'
 import UserAvatar, { getDefaultAvatarIndex } from './UserAvatar'
+import { CameraIcon } from './Icons'
 import './EditPhotographerProfile.css'
 
 import { API_URL } from '../config.js'
@@ -100,7 +101,7 @@ export default function EditPhotographerProfile({ photographer, token, onSaved }
               onClick={() => fileRef.current?.click()}
               disabled={uploading}
             >
-              {uploading ? 'Uploading…' : '📷 Upload Photo'}
+              {uploading ? 'Uploading…' : <><CameraIcon /> Upload Photo</>}
             </button>
             {form.avatar && (
               <button

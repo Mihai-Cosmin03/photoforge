@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { WarningIcon } from './Icons'
 
 export default class ErrorBoundary extends Component {
   constructor(props) {
@@ -39,7 +40,7 @@ export default class ErrorBoundary extends Component {
             fontFamily: 'var(--font-heading)',
           }}
         >
-          ⚠
+          <WarningIcon />
         </div>
         <h2
           style={{

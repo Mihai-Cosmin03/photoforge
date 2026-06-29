@@ -1,4 +1,5 @@
 import './TemplatePreview.css'
+import { CameraIcon, CalendarIcon, PinIcon } from './Icons'
 
 // Helper: use user value if filled, else fallback placeholder
 const v = (data, key, fb) => data?.[key]?.trim() || fb
@@ -52,7 +53,7 @@ function BCSplit({ data = {} }) {
   const photoStyle = data.photo ? { backgroundImage: `url(${data.photo})`, backgroundSize: 'cover', backgroundPosition: 'center' } : {}
   return (
     <div className="tp-bc tp-bc--split">
-      <div className="tp-bc__split-photo" style={photoStyle}>{!data.photo && <div className="tp-bc__split-photo-overlay">📷</div>}</div>
+      <div className="tp-bc__split-photo" style={photoStyle}>{!data.photo && <div className="tp-bc__split-photo-overlay"><CameraIcon /></div>}</div>
       <div className="tp-bc__split-info">
         <div className="tp-bc__split-name">{v(data,'name','Alex M.')}</div>
         <div className="tp-bc__split-title">{v(data,'title','Photographer')}</div>
@@ -1298,7 +1299,7 @@ function PCNewYear({ data={} }) {
       <div className="tp-pc__ny-year">2026</div>
       <div className="tp-pc__ny-title">Happy New Year!</div>
       <div className="tp-pc__ny-text">{v(data,'subtext','Wishing you a year full of beautiful light and memories.')}</div>
-      <div className="tp-pc__ny-sig">{v(data,'name','Alexandra M.')} 📷</div>
+      <div className="tp-pc__ny-sig">{v(data,'name','Alexandra M.')}</div>
     </div>
   )
 }
@@ -1326,8 +1327,8 @@ function PosterWorkshop({ data={} }) {
       <div className="tp-pos__wk-host">with {v(data,'name','Alexandra Moldovan')}</div>
       <div className="tp-pos__wk-rule" />
       <div className="tp-pos__wk-details">
-        <div className="tp-pos__wk-detail">📅 {v(data,'date','10 Mai 2025')}</div>
-        <div className="tp-pos__wk-detail">📍 {v(data,'venue','Studio A, Cluj')}</div>
+        <div className="tp-pos__wk-detail"><CalendarIcon /> {v(data,'date','10 Mai 2025')}</div>
+        <div className="tp-pos__wk-detail"><PinIcon /> {v(data,'venue','Studio A, Cluj')}</div>
       </div>
       <div className="tp-pos__wk-cta">Register Now</div>
     </div>

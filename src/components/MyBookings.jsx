@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useToast } from '../context/ToastContext'
+import { PhoneIcon, DeviceIcon, ClockIcon, CalendarIcon, PinIcon } from './Icons'
 import './MyBookings.css'
 
 import { API_URL } from '../config.js'
@@ -95,19 +96,19 @@ export default function MyBookings({ token, isPhotographer }) {
                     <span className="my-booking-name">{b.user?.name ?? 'Client'}</span>
                   )}
                   <span className={`my-booking-type ${b.type === 'consultation' ? 'my-booking-type--call' : ''}`}>
-                    {b.type === 'consultation' ? '📞 Intro Call' : b.type}
+                    {b.type === 'consultation' ? <><PhoneIcon /> Intro Call</> : b.type}
                   </span>
                 </div>
                 {b.type === 'consultation' ? (
                   <div className="my-booking-details">
-                    {b.consultationPlatform && <span>📱 {b.consultationPlatform}</span>}
-                    {b.preferredTime && <span>🕐 {b.preferredTime}</span>}
-                    {b.date && <span>📅 {formatDate(b.date)}</span>}
+                    {b.consultationPlatform && <span><DeviceIcon /> {b.consultationPlatform}</span>}
+                    {b.preferredTime && <span><ClockIcon /> {b.preferredTime}</span>}
+                    {b.date && <span><CalendarIcon /> {formatDate(b.date)}</span>}
                   </div>
                 ) : (
                   <div className="my-booking-details">
-                    <span>📅 {formatDate(b.date)}</span>
-                    {b.location && <span>📍 {b.location}</span>}
+                    <span><CalendarIcon /> {formatDate(b.date)}</span>
+                    {b.location && <span><PinIcon /> {b.location}</span>}
                   </div>
                 )}
                 {b.message && <p className="my-booking-message">"{b.message}"</p>}
